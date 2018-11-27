@@ -165,6 +165,8 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     var transitionInProgress = false
     var flickVelocity: CGFloat = 0
     
+    var leftSwipeGesture: UISwipeGestureRecognizer?
+    var rightSwipeGesture: UISwipeGestureRecognizer?
 
     lazy var sidePanelPosition: SidePanelPosition = {
         return self._preferences.drawing.sidePanelPosition
@@ -466,4 +468,10 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
         
         return sidePanelFrame
     }
+    
+    open func updateGesture(isEnable: Bool) {
+        rightSwipeGesture?.isEnabled = isEnable
+        leftSwipeGesture?.isEnabled = isEnable
+    }
+    
 }

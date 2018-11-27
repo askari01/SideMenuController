@@ -33,22 +33,22 @@ extension SideMenuController {
         panRecognizer.delegate = self
         sidePanel.addGestureRecognizer(panRecognizer)
         
-        let leftSwipeRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleLeftSwipe))
-        leftSwipeRecognizer.delegate = self
-        leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirection.left
+        leftSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleLeftSwipe))
+        leftSwipeGesture?.delegate = self
+        leftSwipeGesture?.direction = UISwipeGestureRecognizerDirection.left
         
-        let rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleRightSwipe))
-        rightSwipeGesture.delegate = self
-        rightSwipeGesture.direction = UISwipeGestureRecognizerDirection.right
+        rightSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleRightSwipe))
+        rightSwipeGesture?.delegate = self
+        rightSwipeGesture?.direction = UISwipeGestureRecognizerDirection.right
         
         centerPanelOverlay.addGestureRecognizer(tapRecognizer)
         
         if sidePanelPosition.isPositionedLeft {
-            centerPanel.addGestureRecognizer(rightSwipeGesture)
-            centerPanelOverlay.addGestureRecognizer(leftSwipeRecognizer)
+            centerPanel.addGestureRecognizer(rightSwipeGesture!)
+            centerPanelOverlay.addGestureRecognizer(leftSwipeGesture!)
         } else {
-            centerPanel.addGestureRecognizer(leftSwipeRecognizer)
-            centerPanelOverlay.addGestureRecognizer(rightSwipeGesture)
+            centerPanel.addGestureRecognizer(leftSwipeGesture!)
+            centerPanelOverlay.addGestureRecognizer(rightSwipeGesture!)
         }
     }
     
