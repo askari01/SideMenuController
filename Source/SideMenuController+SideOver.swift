@@ -147,12 +147,10 @@ extension SideMenuController {
     }
     
     @objc func handleLeftSwipe(){
-        guard !sidePanelDisabled else { return }
         handleHorizontalSwipe(toLeft: true)
     }
     
     @objc func handleRightSwipe(){
-        guard !sidePanelDisabled else { return }
         handleHorizontalSwipe(toLeft: false)
     }
     
