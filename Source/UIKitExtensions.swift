@@ -22,6 +22,7 @@
 //  SOFTWARE.
 
 import Foundation
+import UIKit
 
 let DefaultStatusBarHeight : CGFloat = 20
 
@@ -79,31 +80,6 @@ public extension UINavigationController {
         
         items.append(contentsOf: positionLeft ? [spacer, item] : [item, spacer])
         return items
-    }
-}
-
-extension UIWindow {
-    func set(_ hidden: Bool, withBehaviour behaviour: SideMenuController.StatusBarBehaviour) {
-        let animations: () -> ()
-        
-        switch behaviour {
-        case .fadeAnimation, .horizontalPan:
-            animations = {
-                self.alpha = hidden ? 0 : 1
-            }
-        case .slideAnimation:
-            animations = {
-                self.transform = hidden ? CGAffineTransform(translationX: 0, y: -1 * DefaultStatusBarHeight) : CGAffineTransform.identity
-            }
-        default:
-            return
-        }
-        
-        if behaviour == .horizontalPan {
-            animations()
-        } else {
-            UIView.animate(withDuration: 0.25, animations: animations)
-        }
     }
 }
 
