@@ -23,7 +23,7 @@
 
 import UIKit
 
-public protocol SideMenuControllerDelegate: class {
+public protocol SideMenuControllerDelegate: AnyObject {
     func sideMenuControllerDidHide(_ sideMenuController: SideMenuController)
     func sideMenuControllerDidReveal(_ sideMenuController: SideMenuController)
 }
@@ -195,7 +195,6 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(SideMenuController.repositionViews), name: UIApplication.willChangeStatusBarFrameNotification, object: UIApplication.shared)
     }
     
     override open func viewWillDisappear(_ animated: Bool) {
@@ -417,7 +416,8 @@ open class SideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     fileprivate var previousStatusBarHeight: CGFloat = DefaultStatusBarHeight
     fileprivate var statusBarHeight: CGFloat {
-        return UIApplication.shared.statusBarFrame.size.height > 0 ? UIApplication.shared.statusBarFrame.size.height : DefaultStatusBarHeight
+        let height = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        return height > 0 ? height : DefaultStatusBarHeight
     }
     
     fileprivate var hidesStatusBar: Bool {
