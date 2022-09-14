@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "SideMenuController",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v15)
     ],
     products: [
         .library(
@@ -20,7 +20,6 @@ let package = Package(
             exclude: ["Info.plist", "SideMenuController.h"],
             resources: []
         )
-    ],
-    swiftLanguageVersions: [.v5]
+    ]
 )
 
